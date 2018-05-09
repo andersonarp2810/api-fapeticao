@@ -13,6 +13,4 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('login',['as' => 'login-admin', 'uses' => 'AuthController@login']);
+})->name('home');
