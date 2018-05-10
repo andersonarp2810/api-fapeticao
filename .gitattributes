@@ -1,1 +1,3 @@
-.env merge=ours
+.env filter=gignore
+# git config --global filter.gignore.clean "sed '/#gignore$/'d"
+# git config --global filter.gignore.smudge cat
