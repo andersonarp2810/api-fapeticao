@@ -5,91 +5,34 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <title>API Fapetição</title>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+        Eae cara
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+        <p>http://localhost:8000/api/login POST</p>
+        <p>Headers:</p>
+        <p>-Accept: application/json</p>
+        <p>Body:</p>
+        <p>{</p>
+        <p>	"email": "as@df.com",</p>
+        <p>	"password": "123456"</p>
+        <p>}</p>
+        <p>Response:</p>
+        <p>{</p>
+        <p>  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUyNTgxMDc5NCwiZXhwIjoxNTI1ODE0Mzk0LCJuYmYiOjE1MjU4MTA3OTQsImp0aSI6IlowYWpQNjFkeTFqR1dxZWoiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mFmvp6rxWOkuGVookkp0fxksmoSTWqE4aUA2B55Skps"</p>
+        <p>}</p>
+        <p>http://localhost:8000/api/user GET</p>
+        <p>Headers:</p>
+        <p>-Accept: application/json</p>
+        <p>-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTUyNTgxMDc5NCwiZXhwIjoxNTI1ODE0Mzk0LCJuYmYiOjE1MjU4MTA3OTQsImp0aSI6IlowYWpQNjFkeTFqR1dxZWoiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mFmvp6rxWOkuGVookkp0fxksmoSTWqE4aUA2B55Skps</p>
+        <p>Response:</p>
+        <p>{</p>
+        <p>    "id": 1,</p>
+        <p>    "email": "as@df.com",</p>
+        <p>    "created_at": "2018-05-08 19:30:51",</p>
+        <p>    "updated_at": "2018-05-08 19:30:51"</p>
+        <p>}</p>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
     </body>
 </html>
