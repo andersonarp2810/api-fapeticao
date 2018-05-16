@@ -8,6 +8,16 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]); #todas as rotas exceto \login passam pelo middlware auth:api
+    }
+    
     //
     public function login(Request $request)
     {
@@ -17,21 +27,25 @@ class AuthController extends Controller
         try {
             // attempt to verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Credenciais inválidas'], 401);
+                return response()->json(['erro' => 'Credenciais inválidas'], 401);
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'Não foi possível criar o token'], 500);
+            return response()->json(['erro' => 'Não foi possível criar o token'], 500);
         }
 
         // all good so return the token
-        return response()->json(compact('token'));
+        return $this->respondWithToken($token);
     }
 
     /**
      * Get the authenticated User.
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * Requer:
+     *  Headers: 
+     *      Authorization: Bearer $token
      */
     public function me()
     {
@@ -42,22 +56,38 @@ class AuthController extends Controller
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * Requer:
+     *  Headers: 
+     *      Authorization: Bearer $token
      */
     public function logout()
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json([
+            'mensagem' => 'Desconectado com sucesso'
+            ]);
     }
 
     /**
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * Requer:
+     *  Headers: 
+     *      Authorization: Bearer $token
+     * 
+     * Retorna:
+     *  JSON
+     *      ver respondeWithToken($token)    
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(
+            auth()->refresh() #retorna um novo token e invalida o antecessor
+        );
     }
 
     /**
@@ -66,13 +96,15 @@ class AuthController extends Controller
      * @param  string $token
      *
      * @return \Illuminate\Http\JsonResponse
+     * 
+     * Usado por: 
+     *  refresh()
      */
     protected function respondWithToken($token)
     {
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'novo_token' => $token,
+            'expira_em' => auth()->factory()->getTTL() * 60 #tempo em segundos
         ]);
     }
 }

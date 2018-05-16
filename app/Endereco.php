@@ -8,6 +8,13 @@ class Endereco extends Model
 {
     //
     protected $fillable = [
-        'id_dono', 'tipo_dono', 'uf', 'cidade', 'bairro','logradouro', 'numero', 'complemento'
+        'id_dono',
+        'tipo_dono',
+        'uf', 
+        'cidade',
+        'bairro',
+        'logradouro',
+        'numero',
+        'complemento'
     ];
 }

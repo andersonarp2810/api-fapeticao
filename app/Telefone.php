@@ -8,6 +8,8 @@ class Telefone extends Model
 {
     //
     protected $fillable = [
-        'id_dono', 'id_tipo', 'telefone'
+        'id_dono',
+        'id_tipo',
+        'telefone'
     ];
 }

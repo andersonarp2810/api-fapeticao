@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreatePeticaosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('peticaos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->unsignedInteger('tipo');
-            $table->rememberToken();
+            $table->unsignedInteger('id_tipo_peticao');
+            $table->unsignedInteger('id_parte_atendida');
+            $table->usnignedInteger('id_documento'); #arquivo do texto
+            $table->string('titulo');
+            $table->text('texto'); #redundante?
             $table->timestampsTz();
         });
     }
@@ -30,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('peticaos');
     }
 }
