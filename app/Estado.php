@@ -11,4 +11,8 @@ class Estado extends Model
         'nome',
         'descricao'
     ];
+
+    public function pastas(){
+        return $this->hasMany(Pasta::class, 'id_pasta');
+    }
 }

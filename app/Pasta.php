@@ -12,15 +12,16 @@ class Pasta extends Model
         'id_estado',
     ];
 
-    public function equipe(){
-        return $this->hasOne(Equipe::class, 'id_equipe');
-    }
-
-    public function estado(){
-        return $this->hasOne(Estado::class, 'id_estado');
-    }
-
     public function documentos(){
         return $this->hasMany(Documento::class, 'id_pasta');
     }
+    
+    public function equipe(){
+        return $this->belongsTo(Equipe::class, 'id_equipe');
+    }
+
+    public function estado(){
+        return $this->belongsTo(Estado::class, 'id_estado');
+    }
+
 }

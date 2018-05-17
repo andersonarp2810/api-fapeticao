@@ -16,13 +16,13 @@ class CreateTelefonesTable extends Migration
         Schema::create('telefones', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('id_dono');
-            $table->unsignedInteger('tipo_dono');
+            $table->unsignedInteger('dono_id');
+            $table->unsignedInteger('dono_type');
             $table->string('numero');
 
             $table->timestampsTz();
 
-            $table->index(['id_dono', 'tipo_dono']);
+            $table->index(['dono_id', 'dono_type']);
         });
     }
 

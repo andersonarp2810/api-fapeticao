@@ -8,9 +8,17 @@ class Email extends Model
 {
     //
     protected $fillable = [
-        'id_dono',
-        'tipo_dono',
+        'dono_id',
+        'dono_type',
         'email'
     ];
-    
+
+    protected $hidden = [
+        'dono_id',
+        'dono_type',
+    ];
+
+    public function dono(){
+        return $this->morphTo();
+    }
 }

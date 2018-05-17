@@ -8,8 +8,8 @@ class Endereco extends Model
 {
     //
     protected $fillable = [
-        'id_dono',
-        'tipo_dono',
+        'dono_id',
+        'dono_type',
         'uf', 
         'cidade',
         'bairro',
@@ -17,5 +17,13 @@ class Endereco extends Model
         'numero',
         'complemento'
     ];
-    
+
+    protected $hidden = [
+        'dono_id',
+        'dono_type',
+    ];
+
+    public function dono(){
+        return $this->morphTo();
+    }
 }
