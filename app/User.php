@@ -17,7 +17,10 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'tipo',
+        'email',
+        'password',
+        'pessoa_id',
+        'pessoa_type',
     ];
 
     /**
@@ -26,7 +29,10 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'pessoa_id',
+        'pessoa_type'
     ];
     
     /**
@@ -47,5 +53,21 @@ class User extends Authenticatable implements JWTSubject
    public function getJWTCustomClaims()
    {
        return [];
+   }
+
+   public function pessoa(){
+       return $this->morphTo('pessoa', 'type', 'id', 'pessoa_id');
+   }
+
+   public function email(){
+       return $this->morphMany('email', 'dono');
+   }
+
+   public function enderecos(){
+       return $this->morphMany('endereco', 'dono');
+   }
+
+   public function telefones(){
+       return $this->morphMany('telefone', 'dono');
    }
 }

@@ -8,8 +8,17 @@ class Telefone extends Model
 {
     //
     protected $fillable = [
-        'id_dono',
-        'id_tipo',
-        'telefone'
+        'dono_id',
+        'dono_type',
+        'numero'
     ];
+
+    protected $hidden = [
+        'dono_id',
+        'dono_type',
+    ];
+
+    public function dono(){
+        return $this->morphTo();
+    }
 }

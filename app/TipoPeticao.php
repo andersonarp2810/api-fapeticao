@@ -15,6 +15,6 @@ class TipoPeticao extends Model
     ];
 
     public function peticoes(){
-        return $this->belongsToMany(Peticao::class, 'id_tipo_peticao');
+        return $this->hasMany(Peticao::class, 'id_tipo_peticao');
     }
 }

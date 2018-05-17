@@ -14,6 +14,19 @@ class ParteAtendida extends Model
     ];
 
     public function peticao() {
-        return $this->hasMany(Peticao::class);
+        return $this->hasMany(Peticao::class, 'id_parte_atendida');
     }
+    
+   public function email(){
+        return $this->morphMany('email', 'dono');
+    }
+
+    public function enderecos(){
+        return $this->morphMany('endereco', 'dono');
+    }
+
+    public function telefones(){
+        return $this->morphMany('telefone', 'dono');
+    }
+
 }
