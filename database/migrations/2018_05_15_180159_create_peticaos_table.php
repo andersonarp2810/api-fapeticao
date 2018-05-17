@@ -17,7 +17,7 @@ class CreatePeticaosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_tipo_peticao');
             $table->unsignedInteger('id_parte_atendida');
-            $table->usnignedInteger('id_documento'); #arquivo do texto
+            $table->unsignedInteger('id_documento'); #arquivo do texto
             $table->string('titulo');
             $table->text('texto'); #redundante?
             $table->timestampsTz();

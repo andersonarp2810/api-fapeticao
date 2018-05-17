@@ -17,4 +17,5 @@ class Endereco extends Model
         'numero',
         'complemento'
     ];
+    
 }

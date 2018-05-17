@@ -16,7 +16,7 @@ class CreateDocumentosTable extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_pasta');
-            $table->unsignedInteer('id_tipo_documento');
+            $table->unsignedInteger('id_tipo_documento');
             $table->string('nome');
             $table->string('caminho');
             $table->timestampsTz();

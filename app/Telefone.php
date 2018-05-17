@@ -12,4 +12,5 @@ class Telefone extends Model
         'id_tipo',
         'telefone'
     ];
+
 }

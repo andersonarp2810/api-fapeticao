@@ -12,4 +12,5 @@ class Email extends Model
         'tipo_dono',
         'email'
     ];
+    
 }
