@@ -19,8 +19,8 @@ class CreateAlunoEquipesTable extends Migration
             $table->unsignedInteger('id_equipe');
             $table->timestampsTz();
 
-            $table->foreign('id_aluno')->references('id')->on('alunos');
-            $table->foreign('id_equipe')->references('id')->on('equipes');
+            $table->foreign('id_aluno')->references('id')->on('alunos')->onDelete('cascade');
+            $table->foreign('id_equipe')->references('id')->on('equipes')->onDelete('cascade');
         });
     }
 

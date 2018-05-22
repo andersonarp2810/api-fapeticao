@@ -21,8 +21,8 @@ class CreateComentariosTable extends Migration
             $table->unsignedInteger('linha')->nullable();
             $table->timestampsTz(); # deve ser apresentado
 
-            $table->foreign('id_documento')->references('id')->on('documentos');
-            $table->foreign('id_professor')->references('id')->on('professors');
+            $table->foreign('id_documento')->references('id')->on('documentos')->onDelete('cascade');
+            $table->foreign('id_professor')->references('id')->on('professors')->onDelete('cascade');
         });
     }
 
