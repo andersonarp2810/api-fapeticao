@@ -17,7 +17,7 @@ class RoteiroController extends Controller
     public function index()
     {
         //
-        return new RoteirosResource(Roteiro::all()->paginate(10));
+        return new RoteirosResource(Roteiro::paginate(5));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Professor;
+use App\Roteiro;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,8 +40,8 @@ class DatabaseSeeder extends Seeder
             "pessoa_type" => "defensor"
         ]);
 
-        factory(App\Professor::class, 30)->create();
-        factory(App\Roteiro::class, 10)->create();
+        factory(Professor::class, 30)->create();
+        factory(Roteiro::class, 10)->create();
         
     }
 }
