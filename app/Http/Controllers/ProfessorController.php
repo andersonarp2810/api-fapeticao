@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Http\Resources\UserResource;
+use App\Professor;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ProfessorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,24 +31,22 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Professor $professor)
     {
         //
-        UserResource::withoutWrapping();
-        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Professor $professor)
     {
         //
     }
@@ -57,10 +54,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Professor $professor)
     {
         //
     }

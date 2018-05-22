@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
 
             $table->timestampsTz();
+
+            $table->index(['pessoa_id', 'pessoa_type']);
         });
     }
 

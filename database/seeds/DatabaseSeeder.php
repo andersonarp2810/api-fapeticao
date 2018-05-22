@@ -16,23 +16,30 @@ class DatabaseSeeder extends Seeder
         User::create([
             "email" => "pro@fes.sor",
             "password" => bcrypt('123456'),
-            "tipo" => 1
+            "pessoa_id" => 1,
+            "pessoa_type" => "professor"
         ]);
         User::create([
             "email" => "alu@no.com",
             "password" => bcrypt('123456'),
-            "tipo" => 2
+            "pessoa_id" => 1,
+            "pessoa_type" => "aluno"
         ]);
         User::create([
             "email" => "ad@min.com",
             "password" => bcrypt('123456'),
-            "tipo" => 3
+            "pessoa_id" => 1,
+            "pessoa_type" => "administrador"
         ]);
         User::create([
             "email" => "def@en.sor",
             "password" => bcrypt('123456'),
-            "tipo" => 4
+            "pessoa_id" => 1,
+            "pessoa_type" => "defensor"
         ]);
+
+        factory(App\Professor::class, 30)->create();
+        factory(App\Roteiro::class, 10)->create();
         
     }
 }

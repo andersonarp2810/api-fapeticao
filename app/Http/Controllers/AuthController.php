@@ -35,7 +35,7 @@ class AuthController extends Controller
         }
 
         // all good so return the token
-        return $this->respondWithToken($token);
+        return response()->json(compact('token'));
     }
 
     /**

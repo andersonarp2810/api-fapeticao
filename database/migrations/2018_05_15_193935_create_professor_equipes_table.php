@@ -19,8 +19,8 @@ class CreateProfessorEquipesTable extends Migration
             $table->unsignedInteger('id_equipe');
             $table->timestampsTz();
 
-            $table->foreign('id_professor')->references('id')->on('professors');
-            $table->foreign('id_equipe')->references('id')->on('equipes');
+            $table->foreign('id_professor')->references('id')->on('professors')->onDelete('cascade');
+            $table->foreign('id_equipe')->references('id')->on('equipes')->onDelete('cascade');
         });
     }
 

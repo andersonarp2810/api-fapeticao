@@ -21,8 +21,8 @@ class CreateDocumentosTable extends Migration
             $table->string('caminho');
             $table->timestampsTz();
 
-            $table->foreign('id_pasta')->references('id')->on('pastas');
-            $table->foreign('id_tipo_documento')->references('id')->on('tipo_documentos');
+            $table->foreign('id_pasta')->references('id')->on('pastas')->onDelete('cascade');
+            $table->foreign('id_tipo_documento')->references('id')->on('tipo_documentos')->onDelete('cascade');
         });
     }
 

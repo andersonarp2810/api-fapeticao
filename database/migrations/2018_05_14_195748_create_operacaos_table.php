@@ -20,7 +20,7 @@ class CreateOperacaosTable extends Migration
             $table->timestampsTz();
 
             $table->foreign('id_usuario')->references('id')->on('users');
-            $table->foreign('id_tipo_operacao')->references('id')->on('tipo_operacaos');
+            $table->foreign('id_tipo_operacao')->references('id')->on('tipo_operacaos')->onDelete('cascade');
         });
     }
 
