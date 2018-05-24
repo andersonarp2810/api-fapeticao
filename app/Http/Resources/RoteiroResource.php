@@ -21,11 +21,11 @@ class RoteiroResource extends JsonResource
                 'texto' => $this->texto
             ],
             'links' => [
-                'self' => route('roteiros.show', ['roteiro' => $this->id])
+                'self' => route('roteiros.show', ['roteiro' => $this->id]),
+                'related' => [
+                    'professor' => route('professors.show', ['professor' => $this->professor->id])
+                ],
             ],
-            'related' => [
-                'professor' => route('professors.show', ['professor' => $this->professor->id])
-            ]
         ];
     }
 }

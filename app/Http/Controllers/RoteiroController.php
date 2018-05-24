@@ -7,7 +7,10 @@ use App\Http\Resources\RoteiroResource;
 use App\Http\Resources\RoteirosResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Htpp\Requests\RoteiroRequest;
+use App\Http\Requests\RoteiroRequest;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
+
+use Exception;
 
 class RoteiroController extends Controller
 {
@@ -36,7 +39,7 @@ class RoteiroController extends Controller
 
         return response([
             'data' => new RoteiroResource($roteiro)
-        ], Response::HTTP_CREATED);
+        ], HTTPResponse::HTTP_CREATED);
     }
 
     /**
@@ -61,8 +64,11 @@ class RoteiroController extends Controller
      */
     public function update(RoteiroRequest $request, Roteiro $roteiro)
     {
-        //
         $roteiro->update($request->all());
+
+        return response([
+            'data' => new RoteiroResource($roteiro)
+        ], HTTPResponse::HTTP_CREATED);    
     }
 
     /**
@@ -73,6 +79,8 @@ class RoteiroController extends Controller
      */
     public function destroy(Roteiro $roteiro)
     {
-        //
+        $roteiro->delete();
+
+        return response(null, HTTPResponse::HTTP_NO_CONTENT);
     }
 }

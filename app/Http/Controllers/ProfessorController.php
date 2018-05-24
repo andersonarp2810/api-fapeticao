@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Professor;
+use App\Http\Resources\ProfessorResource;
+use App\Http\Resources\ProfessorsResource;
+use App\Http\Requests\ProfessorRequest;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class ProfessorController extends Controller
 {
@@ -14,7 +18,7 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        return new ProfessorsResource(Professor::paginate(5));
     }
 
     /**
@@ -23,9 +27,15 @@ class ProfessorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfessorRequest $request)
     {
-        //
+        $professor = new Professor($request->all);
+
+        $professor->save();
+
+        return response([
+            'data' => $professor
+        ], 201);
     }
 
     /**
@@ -36,7 +46,9 @@ class ProfessorController extends Controller
      */
     public function show(Professor $professor)
     {
-        //
+        ProfessorResource::withoutWrapping();
+        
+        return new ProfessorResource($professor);
     }
 
     /**
@@ -46,9 +58,13 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professor $professor)
+    public function update(ProfessorRequest $request, Professor $professor)
     {
-        //
+        $professor->update($request->all());
+
+        return response([
+            'data' => $professor
+        ], 201);
     }
 
     /**
@@ -59,6 +75,8 @@ class ProfessorController extends Controller
      */
     public function destroy(Professor $professor)
     {
-        //
+        $professor->delete();
+
+        return response(null, 204);
     }
 }
