@@ -62,7 +62,7 @@ class RoteiroController extends Controller
      * @param  \App\Roteiro  $roteiro
      * @return \Illuminate\Http\Response
      */
-    public function update(RoteiroRequest $request, Roteiro $roteiro)
+    public function update(Request $request, Roteiro $roteiro)
     {
         $roteiro->update($request->all());
 

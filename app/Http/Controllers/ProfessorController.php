@@ -58,7 +58,7 @@ class ProfessorController extends Controller
      * @param  \App\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfessorRequest $request, Professor $professor)
+    public function update(Request $request, Professor $professor)
     {
         $professor->update($request->all());
 
