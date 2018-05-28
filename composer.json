@@ -47,7 +47,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate",
-            "@php artisan migrate:refresh --seed"
+            "@php artisan migrate:refresh --seed",
+            "@composer install --dev"
         ],
         "post-install-cmd": [
             "php artisan clear-compiled",

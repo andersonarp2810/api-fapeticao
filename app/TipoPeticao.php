@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoPeticao extends Model
 {
+    protected $dateFormat = 'Y-m-d H:i:sO';
     //
 
     protected $fillable = [
@@ -15,6 +16,6 @@ class TipoPeticao extends Model
     ];
 
     public function peticoes(){
-        return $this->belongsToMany(Peticao::class, 'id_tipo_peticao');
+        return $this->hasMany(Peticao::class, 'id_tipo_peticao');
     }
 }

@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Defensor extends Model
 {
+    protected $dateFormat = 'Y-m-d H:i:sO';
     //
     protected $fillable = [ # devem ser os mesmos atributos da tabela definidos no arquivo de migração 
-        'id_usuario',   # para que o framework automatize as atribuições
-        'nome',
+        'nome', # para que o framework automatize as atribuições
         'cadastro_profissional'
     ];
 
-    public function user(){
-        return $this->hasOne(User::class, 'id_usuario', 'id');
+    public function usuario(){
+        return $this->MorphOne('usuario', 'pessoa');
     }
+    
 }

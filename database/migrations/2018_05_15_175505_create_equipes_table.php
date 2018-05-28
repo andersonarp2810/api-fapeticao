@@ -18,7 +18,7 @@ class CreateEquipesTable extends Migration
             $table->unsignedInteger('id_semestre');
             $table->timestampsTz();
 
-            $table->foreign('id_semestre')->references('id')->on('semestres');
+            $table->foreign('id_semestre')->references('id')->on('semestres')->onDelete('cascade');
         });
     }
 

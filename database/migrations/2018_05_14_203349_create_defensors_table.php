@@ -15,12 +15,10 @@ class CreateDefensorsTable extends Migration
     {
         Schema::create('defensors', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_usuario');
             $table->string('nome');
             $table->string('cadastro_profissional');
             $table->timestampsTz();
 
-            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 

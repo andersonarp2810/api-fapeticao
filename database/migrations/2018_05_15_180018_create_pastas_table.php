@@ -19,8 +19,8 @@ class CreatePastasTable extends Migration
             $table->unsignedInteger('id_estado');
             $table->timestampsTz();
 
-            $table->foreign('id_equipe')->references('id')->on('equipes');
-            $table->foreign('id_estado')->references('id')->on('estados');
+            $table->foreign('id_equipe')->references('id')->on('equipes')->onDelete('cascade');
+            $table->foreign('id_estado')->references('id')->on('estados')->onDelete('cascade');
         });
     }
 
