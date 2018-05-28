@@ -9,6 +9,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+    protected $dateFormat = 'Y-m-d H:i:sO';
     use Notifiable;
 
     /**
