@@ -22,7 +22,7 @@ class RoteiroController extends Controller
     public function index()
     {
         //
-        return new RoteirosResource(Roteiro::paginate(5));
+        return new RoteirosResource(Roteiro::paginate(10));
     }
 
     /**

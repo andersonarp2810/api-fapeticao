@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UsersResource;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -16,6 +19,7 @@ class UserController extends Controller
     public function index()
     {
         //
+        return new UsersResource(User::paginate(10));
     }
 
     /**
@@ -24,9 +28,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         //
+        $user = new User($request->all());
+
+        $user->save();
+
+        return response([
+            'data' => new UserResource($user)
+        ], 201);
     }
 
     /**
@@ -52,6 +63,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $user->update($request->all());
+        
+        return response([
+            'data' => new UserResource($user)
+        ], 201);
     }
 
     /**
@@ -63,5 +79,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+
+        return response(null, 204);
     }
 }

@@ -22,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
             'endereco' => 'App\Endereco',
             'email' => 'App\Email',
             'telefone' => 'App\Telefone',
+            'professor' => 'App\Professor',
+            'administrador' => 'App\Administrador',
+            'aluno' => 'App\Aluno',
+            'defensor' => 'App\Defensor'
         ]);
     }
 

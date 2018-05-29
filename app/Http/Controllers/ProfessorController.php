@@ -29,7 +29,7 @@ class ProfessorController extends Controller
      */
     public function store(ProfessorRequest $request)
     {
-        $professor = new Professor($request->all);
+        $professor = new Professor($request->all());
 
         $professor->save();
 
