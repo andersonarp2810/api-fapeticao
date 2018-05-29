@@ -9,6 +9,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+    protected $dateFormat = 'Y-m-d H:i:sO';
     use Notifiable;
 
     /**
@@ -59,7 +60,7 @@ class User extends Authenticatable implements JWTSubject
        return $this->morphTo('pessoa', 'type', 'id', 'pessoa_id');
    }
 
-   public function email(){
+   public function emails(){
        return $this->morphMany('email', 'dono');
    }
 

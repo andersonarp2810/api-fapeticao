@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Email extends Model
 {
+    protected $dateFormat = 'Y-m-d H:i:sO';
     //
     protected $fillable = [
         'dono_id',

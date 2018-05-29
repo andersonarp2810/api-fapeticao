@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equipe extends Model
 {
+    protected $dateFormat = 'Y-m-d H:i:sO';
     //
     protected $fillable = [
         'id_semestre'
