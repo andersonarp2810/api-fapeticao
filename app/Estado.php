@@ -14,6 +14,6 @@ class Estado extends Model
     ];
 
     public function pastas(){
-        return $this->hasMany(Pasta::class, 'id_pasta');
+        return $this->hasMany(Pasta::class, 'id_estado');
     }
 }
