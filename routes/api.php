@@ -32,4 +32,6 @@ Route::group([
     Route::apiResource('professors', 'ProfessorController');
     Route::apiResource('administradors', 'AdministradorController');
     Route::apiResource('defensors', 'DefensorController');
+    Route::apiResource('parte_atendidas', 'ParteAtendidaController');
+    Route::apiResource('semestres', 'SemestreController');
 });

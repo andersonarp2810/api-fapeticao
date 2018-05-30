@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AdministradorResource extends JsonResource
+class SemestreResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,16 +15,16 @@ class AdministradorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'administrador',
-            'id' => (string)$this->id,
-            'attributes' =>  [
-                'nome' => $this->nome,
-                'cadastro_profissional' => $this->cadastro_profissional
+            'type' => 'semestre',
+            'id' => (string) $this->id,
+            'attributes' => [
+                'semestre' => $this->semestre,
+                'area_de_atuacao' => $this->area_de_atuacao
             ],
             'links' => [
-                'self' => route('administradors.show', ['administrador' => $this->id]),
+                'self' => route('semestres.show', [$this->id]),
                 'related' => []
-            ],
+            ]
         ];
     }
 }

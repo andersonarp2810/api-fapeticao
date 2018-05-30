@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Administrador;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 use App\Http\Resources\AdministradorResource;
 use App\Http\Resources\AdministradorsResource;
-
 use App\Http\Requests\AdministradorRequest;
-use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class AdministradorController extends Controller
 {
