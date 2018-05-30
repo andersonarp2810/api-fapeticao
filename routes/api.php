@@ -30,6 +30,7 @@ Route::group([
     Route::apiResource('users', 'UserController');
     Route::apiResource('roteiros', 'RoteiroController');
     Route::apiResource('professors', 'ProfessorController');
+    Route::apiResource('administradors', 'AdministradorController');
     Route::apiResource('defensors', 'DefensorController');
     Route::apiResource('alunos', 'AlunoController');
 });
