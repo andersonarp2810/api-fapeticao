@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Professor;
 use App\Roteiro;
+use App\Administrador;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,6 +43,6 @@ class DatabaseSeeder extends Seeder
 
         factory(Professor::class, 30)->create();
         factory(Roteiro::class, 10)->create();
-        
+        factory(Administrador::class, 5)->create();
     }
 }
