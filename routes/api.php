@@ -35,4 +35,5 @@ Route::group([
     Route::apiResource('alunos', 'AlunoController');
     Route::apiResource('tipo_operacaos', 'TipoOperacaoController');
     Route::apiResource('estados', 'EstadoController');
+    Route::apiResource('operacaos', 'OperacaoController');
 });
