@@ -33,4 +33,5 @@ Route::group([
     Route::apiResource('administradors', 'AdministradorController');
     Route::apiResource('defensors', 'DefensorController');
     Route::apiResource('alunos', 'AlunoController');
+    Route::apiResource('tipo_operacaos', 'TipoOperacaoController');
 });
