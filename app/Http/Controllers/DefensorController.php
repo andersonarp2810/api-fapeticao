@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Http\Resources\UserResource;
-use App\Http\Resources\UsersResource;
-use App\Http\Requests\UserRequest;
+use App\Defensor;
+use App\Http\Resources\DefensorResource;
+use App\Http\Resources\DefensorsResource;
+use App\Http\Requests\DefensorRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class UserController extends Controller
+class DefensorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        return new UsersResource(User::paginate(10));
+        return new DefensorsResource(Defensor::paginate(10));
     }
 
     /**
@@ -28,58 +28,58 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(DefensorRequest $request)
     {
         //
-        $user = new User($request->all());
+        $defensor = new Defensor($request->all());
 
-        $user->save();
+        $defensor->save();
 
         return response([
-            'data' => new UserResource($user)
+            'data' => new DefensorResource($defensor)
         ], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Defensor  $defensor
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Defensor $defensor)
     {
         //
-        UserResource::withoutWrapping();
-        return new UserResource($user);
+        DefensorResource::withoutWrapping();
+        return new DefensorResource($defensor);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Defensor  $defensor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Defensor $defensor)
     {
         //
-        $user->update($request->all());
-        
+        $defensor->update($request->all());
+
         return response([
-            'data' => new UserResource($user)
+            'data' => new DefensorResource($defensor)
         ], 201);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Defensor  $defensor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Defensor $defensor)
     {
         //
-        $user->delete();
+        $defensor->delete();
 
         return response(null, 204);
     }

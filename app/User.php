@@ -57,7 +57,7 @@ class User extends Authenticatable implements JWTSubject
    }
 
    public function pessoa(){
-       return $this->morphTo('pessoa', 'type', 'id', 'pessoa_id');
+       return $this->morphTo();
    }
 
    public function emails(){

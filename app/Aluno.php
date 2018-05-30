@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
     //
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    protected $dateFormat = 'Y-m-d H:i:sO'; #pra pegar no postgre
 
     protected $fillable = [ # devem ser os mesmos atributos da tabela definidos no arquivo de migração 
         'nome', # para que o framework automatize as atribuições
@@ -19,7 +19,7 @@ class Aluno extends Model
     }
     
     public function usuario(){
-        return $this->MorphOne('usuario', 'pessoa');
+        return $this->MorphOne(User::class, 'pessoa');
     }
 
 }

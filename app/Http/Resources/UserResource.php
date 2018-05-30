@@ -27,6 +27,7 @@ class UserResource extends JsonResource
                         'type' => $this->pessoa_type,
                         'link' => route(''.$this->pessoa_type.'s.show', [''.$this->pessoa_type => $this->pessoa_id])
                     ],
+                    /* falta implementar as rotas disso
                     'emails' => $this->emails->map(function ($email){
                         return route('emails.show', ['email' => $email->id]);  
                     }),
@@ -36,6 +37,7 @@ class UserResource extends JsonResource
                     'telefones' => $this->telefones->map(function ($telefone){
                         return route('telefones.show', ['telefone' => $telefone->id]);
                     })
+                    */
                 ]
             ]
         ];
