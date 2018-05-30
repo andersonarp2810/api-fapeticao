@@ -15,7 +15,7 @@ class Aluno extends Model
     ];
     
     public function equipes(){
-        return $this->belongsToMany(Equipe::class, 'aluno_equipes');
+        return $this->belongsToMany(Equipe::class, 'aluno_equipes', 'id_aluno', 'id_equipe');
     }
     
     public function usuario(){
