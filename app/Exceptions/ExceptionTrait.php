@@ -22,7 +22,7 @@ trait ExceptionTrait
 		if ($this->isHttp($e)) {
 			return $this->HttpResponse($e);
 		}
-		dd(['a' => $request, 'b' => $e]);
+		//dd(['a' => $request, 'b' => $e]);
 		return parent::render($request, $e);
     }
 	
