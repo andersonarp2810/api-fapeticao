@@ -66,7 +66,7 @@ class AuthController extends Controller
         auth()->logout();
 
         return response()->json([
-            'mensagem' => 'Desconectado com sucesso'
+            'message' => 'Desconectado com sucesso'
             ]);
     }
 

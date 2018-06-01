@@ -39,4 +39,5 @@ Route::group([
     Route::apiResource('estados', 'EstadoController');
     Route::apiResource('operacaos', 'OperacaoController');
     Route::apiResource('emails', 'EmailController');
+    Route::apiResource('enderecos', 'EnderecoController');
 });
