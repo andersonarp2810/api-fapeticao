@@ -17,7 +17,7 @@ class CreateTelefonesTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('dono_id');
-            $table->unsignedInteger('dono_type');
+            $table->string('dono_type');
             $table->string('numero');
 
             $table->timestampsTz();

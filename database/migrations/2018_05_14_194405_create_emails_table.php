@@ -17,7 +17,7 @@ class CreateEmailsTable extends Migration
             $table->increments('id');
             
             $table->unsignedInteger('dono_id');
-            $table->unsignedInteger('dono_type');
+            $table->string('dono_type');
             $table->string('email');
 
             $table->timestampsTz();
