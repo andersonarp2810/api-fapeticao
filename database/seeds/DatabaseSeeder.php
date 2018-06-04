@@ -9,6 +9,8 @@ use App\ParteAtendida;
 use App\Semestre;
 use App\TipoDocumento;
 use App\Documento;
+use App\TipoPeticao;
+use App\Peticao;
 
 class DatabaseSeeder extends Seeder
 {
@@ -51,6 +53,8 @@ class DatabaseSeeder extends Seeder
         factory(ParteAtendida::class, 5)->create();
         factory(Semestre::class, 5)->create();
         factory(TipoDocumento::class, 5)->create();
-        factory(Documento::class, 5)->create();
+        //factory(Documento::class, 5)->create();
+        //factory(TipoPeticao::class, 5)->create();
+        //factory(Peticao::class, 5)->create();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DocumentoResource extends JsonResource
+class PeticaoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,19 +15,19 @@ class DocumentoResource extends JsonResource
     public function toArray($request)
     {
         return [
-          'type' => 'documento',
+          'type' => 'peticao',
           'id' => (string) $this->id,
           'attributes' => [
-              'nome' => $this->nome,
-              'caminho' => $this->caminho
-          ],
+              'titulo' => $this->titulo,
+              'descricao' => $this->descricao
+          ] ,
           'links' => [
-              'self' => route('documentos.show', ['documento' => $this->id]),
+              'self' => route('peticaos.show', ['peticaos' => $this->id]),
               'related' => [
-                    'tipo' => route('tipo_documentos.show', ['tipo_documento' => $this->tipo->id]),
-                    
+                'tipo' => route('tipo_peticaos.show', ['tipo_peticao' => $this->tipo->id]),
+                
             ]
-          ] 
+          ]  
         ];
     }
 }

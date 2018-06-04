@@ -45,4 +45,6 @@ Route::group([
     Route::apiResource('telefones', 'TelefoneController');
     Route::apiResource('comentarios', 'ComentarioController');
     Route::apiResource('pastas', 'PastaController');
+    Route::apiResource('tipo_peticaos', 'TipoPeticaoController');
+    Route::apiResource('peticaos', 'PeticaoController');
 });
