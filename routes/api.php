@@ -44,4 +44,5 @@ Route::group([
     Route::apiResource('enderecos', 'EnderecoController');
     Route::apiResource('telefones', 'TelefoneController');
     Route::apiResource('comentarios', 'ComentarioController');
+    Route::apiResource('pastas', 'PastaController');
 });
