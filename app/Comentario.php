@@ -11,13 +11,18 @@ class Comentario extends Model
     
     protected $fillable = [
         'id_documento',
-        'id_professor',
+        'autor_id',
+        'autor_type', # professor ou defensor
         'texto',
         'linha'
     ];
 
     public function documento() {
         return $this->belongsTo(Documento::class, 'id_documento');
+    }
+
+    public function autor(){
+        return $this->morphTo();
     }
     
 }

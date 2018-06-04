@@ -31,7 +31,10 @@ class ProfessorResource extends JsonResource
                     'roteiros' => $this->roteiros->map(function ($roteiro){
                         return route('roteiros.show', ['roteiro' => $roteiro->id]);
                     }),
-                    'usuário' => route('users.show', ['user' => $this->usuario->id])
+                    'usuário' => route('users.show', ['user' => $this->usuario->id]),
+                    'comentarios' => $this->comentarios->map(function($comentario){
+                        return route('comentarios.show', ['comentario' => $comentario->id]);
+                    }),
                 ]
             ],
         ];

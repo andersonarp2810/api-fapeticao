@@ -16,13 +16,14 @@ class CreateComentariosTable extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_documento');
-            $table->unsignedInteger('id_professor'); # que fez
+            $table->unsignedInteger('autor_id');
+            $table->string('autor_type'); # professor ou  defensor
             $table->text('texto');
             $table->unsignedInteger('linha')->nullable();
             $table->timestampsTz(); # deve ser apresentado
 
+            $table->index(['autor_id', 'autor_type']);
             $table->foreign('id_documento')->references('id')->on('documentos')->onDelete('cascade');
-            $table->foreign('id_professor')->references('id')->on('professors')->onDelete('cascade');
         });
     }
 

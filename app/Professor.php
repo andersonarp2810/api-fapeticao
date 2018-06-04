@@ -25,4 +25,8 @@ class Professor extends Model
         return $this->MorphOne(User::class, 'pessoa');
     }
 
+    public function comentarios(){
+        return $this->MorphMany(Comentario::class, 'autor');
+    }
+
 }

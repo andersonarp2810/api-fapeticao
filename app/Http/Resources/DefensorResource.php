@@ -24,7 +24,10 @@ class DefensorResource extends JsonResource
             'links' => [
                 'self' => route('defensors.show', ['defensor' => $this->id]),
                 'related' => [
-                    'usuário' => $this->usuario ? route('users.show', ['user' => $this->usuario->id]) : 'Erro: Não há usuário para esta pessoa' # esse erro não deve acontecer em produção quando estiver implementado o cadastro integrado de usuário e pessoa
+                    'usuário' => $this->usuario ? route('users.show', ['user' => $this->usuario->id]) : 'Erro: Não há usuário para esta pessoa', # esse erro não deve acontecer em produção quando estiver implementado o cadastro integrado de usuário e pessoa
+                    'comentarios' => $this->comentarios->map(function($comentario){
+                        return route('comentarios.show', ['comentario' => $comentario->id]);
+                    }),
                 ]
             ]
         ];
