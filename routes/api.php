@@ -38,4 +38,6 @@ Route::group([
     Route::apiResource('tipo_operacaos', 'TipoOperacaoController');
     Route::apiResource('estados', 'EstadoController');
     Route::apiResource('operacaos', 'OperacaoController');
+    Route::apiResource('tipo_documentos', 'TipoDocumentoController');
+    Route::apiResource('documentos', 'DocumentoController');
 });

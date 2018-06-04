@@ -7,6 +7,8 @@ use App\Roteiro;
 use App\Administrador;
 use App\ParteAtendida;
 use App\Semestre;
+use App\TipoDocumento;
+use App\Documento;
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,5 +50,7 @@ class DatabaseSeeder extends Seeder
         factory(Administrador::class, 5)->create();
         factory(ParteAtendida::class, 5)->create();
         factory(Semestre::class, 5)->create();
+        factory(TipoDocumento::class, 5)->create();
+        factory(Documento::class, 5)->create();
     }
 }
