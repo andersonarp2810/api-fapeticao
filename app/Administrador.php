@@ -15,7 +15,7 @@ class Administrador extends Model
     ];
 
     public function usuario(){
-        return $this->MorphOne('usuario', 'pessoa');
+        return $this->MorphOne(User::class, 'pessoa');
     }
     
 }

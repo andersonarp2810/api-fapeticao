@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
             'professor' => 'App\Professor',
             'administrador' => 'App\Administrador',
             'aluno' => 'App\Aluno',
-            'defensor' => 'App\Defensor'
+            'defensor' => 'App\Defensor',
+            'parte' => 'App\ParteAtendida',
         ]);
     }
 

@@ -17,13 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', 'AuthController@login')->middleware('cors');
 
 Route::group([
 
-    'middleware' => ['api', 'cors']
+    'middleware' => ['auth:api', 'cors']
 
 ], function ($router) {
-    Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
@@ -40,4 +40,7 @@ Route::group([
     Route::apiResource('operacaos', 'OperacaoController');
     Route::apiResource('tipo_documentos', 'TipoDocumentoController');
     Route::apiResource('documentos', 'DocumentoController');
+    Route::apiResource('emails', 'EmailController');
+    Route::apiResource('enderecos', 'EnderecoController');
+    Route::apiResource('telefones', 'TelefoneController');
 });

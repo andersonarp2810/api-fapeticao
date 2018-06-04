@@ -17,13 +17,13 @@ class CreateEnderecosTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('dono_id');
-            $table->unsignedInteger('dono_type');
+            $table->string('dono_type');
             $table->string('uf');
             $table->string('cidade');
             $table->string('bairro');
             $table->string('logradouro');
             $table->string('numero');
-            $table->string('complemento');           
+            $table->string('complemento')->nullable();           
             
             $table->timestampsTz();
 

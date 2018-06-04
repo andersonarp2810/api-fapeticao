@@ -15,8 +15,6 @@ class Telefone extends Model
     ];
 
     protected $hidden = [
-        'dono_id',
-        'dono_type',
     ];
 
     public function dono(){
