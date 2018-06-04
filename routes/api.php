@@ -47,4 +47,10 @@ Route::group([
     Route::apiResource('pastas', 'PastaController');
     Route::apiResource('tipo_peticaos', 'TipoPeticaoController');
     Route::apiResource('peticaos', 'PeticaoController');
+    Route::apiResource('equipes', 'EquipeController');
+    Route::post('equipes/{equipe}/professores', 'EquipeController@addProfessor');
+    Route::delete('equipes/{equipe}/professores', 'EquipeController@detachProfessor');
+    Route::post('equipes/{equipe}/alunos', 'EquipeController@addAluno');
+    Route::delete('equipes/{equipe}/alunos', 'EquipeController@detachAluno');
+    
 });

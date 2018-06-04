@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Equipe;
+use App\Professor;
+use App\Aluno;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Resources\EquipeResource;
@@ -77,5 +79,41 @@ class EquipeController extends Controller
         $equipe->delete();
 
         return response(null, 204);
+    }
+
+    // adicionar professor em uma equipe
+    public function addProfessor(Request $request, Equipe $equipe){
+        $professor = Professor::find($request['id_professor']);
+        $equipe->professores->save($professor);
+
+        return response([
+            'data' => new EquipeResource($equipe)
+        ], 201);
+    }
+
+    // remove um professor da equipe sem deletar ninguém
+    public function detachProfessor(Request $request, Equipe $equipe){
+        $equipe->professores->detach($request['id_professor']);
+        return response([
+            'data' => new EquipeResource($equipe)
+        ], 202);
+    }
+
+    // adicionar aluno a equipe
+    public function addAluno(Request $request, Equipe $equipe){
+        $aluno = Aluno::find($request['id_aluno']);
+        $equipe->alunos->save($aluno);
+        return response([
+            'data' => new EquipeResource($equipe)
+        ], 201);
+    }
+
+    // remover aluno de equipe sem deletar ninguém
+    public function detachAluno(Request $request, Equipe $equipe){
+        $equipe->alunos->detach($request['id_aluno']);
+
+        return response([
+            'data' => new EquipeResource($equipe)
+        ], 202);
     }
 }
