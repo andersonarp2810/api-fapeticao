@@ -52,5 +52,6 @@ Route::group([
     Route::delete('equipes/{equipe}/professores', 'EquipeController@detachProfessor');
     Route::post('equipes/{equipe}/alunos', 'EquipeController@addAluno');
     Route::delete('equipes/{equipe}/alunos', 'EquipeController@detachAluno');
-    
+    Route::apiResource('solicitacao_cadastros', 'SolicitacaoCadastroController');
+    Route::post('solicitacao_cadastros/{solicitacao_cadastro}', 'SolicitacaoCadastroController@aprovarCadastro');
 });

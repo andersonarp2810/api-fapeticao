@@ -47,10 +47,10 @@ class DatabaseSeeder extends Seeder
             "pessoa_type" => "defensor"
         ]);
 
-        factory(Professor::class, 30)->create();
-        factory(Roteiro::class, 10)->create();
-        factory(Administrador::class, 5)->create();
-        factory(ParteAtendida::class, 5)->create();
+        factory(Professor::class, 1)->create();
+        factory(Roteiro::class, 30)->create();
+        factory(Administrador::class, 1)->create();
+        factory(ParteAtendida::class, 20)->create();
         factory(Semestre::class, 5)->create();
         factory(TipoDocumento::class, 5)->create();
         //factory(Documento::class, 5)->create();
