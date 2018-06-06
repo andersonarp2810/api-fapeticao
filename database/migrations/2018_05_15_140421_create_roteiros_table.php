@@ -16,6 +16,7 @@ class CreateRoteirosTable extends Migration
         Schema::create('roteiros', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_professor')->default(null);
+            $table->string('titulo');
             $table->text('texto');
             $table->timestampsTz();
 

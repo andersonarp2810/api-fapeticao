@@ -18,6 +18,7 @@ class RoteiroResource extends JsonResource
             'type' => 'roteiro',
             'id' => (string)$this->id,
             'attributes' => [
+                'titulo' => $this->titulo,
                 'texto' => $this->texto
             ],
             'links' => [

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -35,7 +36,10 @@ class AuthController extends Controller
         }
 
         // all good so return the token
-        return response()->json(compact('token'));
+        return response([
+            'token' => $token,
+            'usuário' => new UserResource(auth()->user())
+        ], 200);
     }
 
     /**
@@ -49,7 +53,10 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response([
+            'usuário' => new UserResource(auth()->user()),
+            'expira_em' => auth()->factory()->getTTL() #tempo em minutos
+        ], 200);
     }
 
     /**
@@ -85,9 +92,15 @@ class AuthController extends Controller
      */
     public function refresh()
     {
+        auth()->setTTL(auth()->factory()->getTTL()); // renova de acordo com
+        return response([
+            'expira_em' => auth()->factory()->getTTL() #tempo em minutos
+        ], 200);
+        /*
         return $this->respondWithToken(
             auth()->refresh() #retorna um novo token e invalida o antecessor
         );
+        */
     }
 
     /**
@@ -104,7 +117,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'novo_token' => $token,
-            'expira_em' => auth()->factory()->getTTL() * 60 #tempo em segundos
+            'expira_em' => auth()->factory()->getTTL() #tempo em minutos
         ]);
     }
 }

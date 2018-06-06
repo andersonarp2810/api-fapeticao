@@ -24,6 +24,7 @@ class RoteiroRequest extends FormRequest
     public function rules()
     {
         return [
+            'titulo' => 'required',
             'texto' => 'required',
             'id_professor' => 'required|exists:professors,id'
         ];
