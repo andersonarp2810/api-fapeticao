@@ -24,7 +24,11 @@ class ParteAtendidaResource extends JsonResource
             ],
             'links' => [
                 'self' => route('parte_atendidas.show', ['parteatendida' => $this->id]),
-                'related' => []
+                'related' => [
+                    'peticao' => $this->peticao->map(function($peticao){
+                        return route('peticaos.show', ['peticao' => $this->id]);
+                    }),
+                ]
             ]
         ];
     }

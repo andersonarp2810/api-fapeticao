@@ -19,7 +19,7 @@ class PeticaoResource extends JsonResource
           'id' => (string) $this->id,
           'attributes' => [
               'titulo' => $this->titulo,
-              'descricao' => $this->descricao
+              'texto' => $this->texto
           ] ,
           'links' => [
               'self' => route('peticaos.show', ['peticaos' => $this->id]),

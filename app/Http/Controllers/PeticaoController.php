@@ -18,7 +18,7 @@ class PeticaoController extends Controller
      */
     public function index()
     {
-        return new PeticaosResource(PeticaoResource::paginate(10));
+        return new PeticaosResource(Peticao::paginate(10));
     }
 
     /**
@@ -29,7 +29,7 @@ class PeticaoController extends Controller
      */
     public function store(PeticaoRequest $request)
     {
-        $peticao = new PeticaoResource($request->all());
+        $peticao = new Peticao($request->all());
 
         $peticao->save();
 
