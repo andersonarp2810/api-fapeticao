@@ -19,14 +19,13 @@ class UserResource extends JsonResource
             'id' => (string)$this->id,
             'attributes' => [
                 'email' => $this->email,
+                'nome' => $this->pessoa->nome,
+                'tipo' => $this->pessoa_type
             ],
             'links' => [
                 'self' => route('users.show', ['user' => $this->id]),
                 'related' => [
-                    'pessoa' => [
-                        'type' => $this->pessoa_type,
-                        'link' => route(''.$this->pessoa_type.'s.show', [''.$this->pessoa_type => $this->pessoa_id])
-                    ],
+                    'pessoa' => route(''.$this->pessoa_type.'s.show', [''.$this->pessoa_type => $this->pessoa_id]),
                     'emails' => $this->emails->map(function ($email){
                         return route('emails.show', ['email' => $email->id]);  
                     }),

@@ -9,6 +9,7 @@ class Roteiro extends Model
     protected $dateFormat = 'Y-m-d H:i:sO';
     //
     protected $fillable = [
+        'titulo',
         'id_professor',
         'texto'
     ];
