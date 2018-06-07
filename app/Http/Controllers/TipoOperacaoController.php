@@ -19,6 +19,7 @@ class TipoOperacaoController extends Controller
     public function index()
     {
         //
+        $this->authorize('isAdmin', TipoOperacao::class);
         return new TipoOperacaosResource(TipoOperacao::paginate(10));
     }
 
@@ -31,6 +32,7 @@ class TipoOperacaoController extends Controller
     public function store(TipoOperacaoRequest $request)
     {
         //
+        $this->authorize('isAdmin', TipoOperacao::class);
         $tipo = new TipoOperacao($request->all());
 
         $tipo->save();
@@ -49,6 +51,7 @@ class TipoOperacaoController extends Controller
     public function show(TipoOperacao $tipoOperacao)
     {
         //
+        $this->authorize('isAdmin', TipoOperacao::class);
         TipoOperacaoResource::withoutWrapping();
         return new TipoOperacaoResource($tipoOperacao);
     }
@@ -63,6 +66,7 @@ class TipoOperacaoController extends Controller
     public function update(Request $request, TipoOperacao $tipoOperacao)
     {
         //
+        $this->authorize('isAdmin', TipoOperacao::class);
         $tipoOperacao->update($request->all());
 
         return response([
@@ -79,6 +83,7 @@ class TipoOperacaoController extends Controller
     public function destroy(TipoOperacao $tipoOperacao)
     {
         //
+        $this->authorize('isAdmin', TipoOperacao::class);
         $tipoOperacao->delete();
 
         return response(null, 204);

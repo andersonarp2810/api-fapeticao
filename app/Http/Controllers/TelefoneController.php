@@ -19,6 +19,7 @@ class TelefoneController extends Controller
     public function index()
     {
         //
+        $this->authorize('before', Telefone::class);
         return new TelefonesResource(Telefone::paginate(10));
     }
 
@@ -31,6 +32,7 @@ class TelefoneController extends Controller
     public function store(TelefoneRequest $request)
     {
         //
+        $this->authorize('create', Telefone::class);
         $telefone = new Telefone($request->all());
 
         $telefone->save();
@@ -49,6 +51,7 @@ class TelefoneController extends Controller
     public function show(Telefone $telefone)
     {
         //
+        $this->authorize('show', $telefone);
         TelefoneResource::withoutWrapping();
         return new TelefoneResource($telefone);
     }
@@ -63,6 +66,7 @@ class TelefoneController extends Controller
     public function update(Request $request, Telefone $telefone)
     {
         //
+        $this->authorize('update', $telefone);
         $telefone->update($request->all());
 
         return response([
@@ -79,6 +83,7 @@ class TelefoneController extends Controller
     public function destroy(Telefone $telefone)
     {
         //
+        $this->authorize('delete', $telefone);
         $telefone->delete();
 
         return response(null, 204);
