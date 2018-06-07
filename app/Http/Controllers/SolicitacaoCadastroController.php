@@ -25,6 +25,7 @@ class SolicitacaoCadastroController extends Controller
     public function index()
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         return new SolicitacaoCadastrosResource(SolicitacaoCadastro::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -37,7 +38,7 @@ class SolicitacaoCadastroController extends Controller
      */
     public function store(SolicitacaoCadastroRequest $request)
     {
-        //
+        // qualquer um pode fazer sem nem logar
         $solicitacaoCadastro = new SolicitacaoCadastro($request->all());
 
         $solicitacaoCadastro->senha = bcrypt($solicitacaoCadastro->senha);
@@ -58,6 +59,7 @@ class SolicitacaoCadastroController extends Controller
     public function show(SolicitacaoCadastro $solicitacaoCadastro)
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         SolicitacaoCadastroResource::withoutWrapping();
 
         return new SolicitacaoCadastroResource($solicitacaoCadastro);
@@ -73,6 +75,7 @@ class SolicitacaoCadastroController extends Controller
     public function update(Request $request, SolicitacaoCadastro $solicitacaoCadastro)
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         $solicitacaoCadastro->update($request->all());
 
         return response([
@@ -89,6 +92,7 @@ class SolicitacaoCadastroController extends Controller
     public function destroy(SolicitacaoCadastro $solicitacaoCadastro)
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         $solicitacaoCadastro->delete();
 
         return response(null, 204);
@@ -101,6 +105,9 @@ class SolicitacaoCadastroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function aprovarCadastro(SolicitacaoCadastro $solicitacaoCadastro){
+        
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
+
         switch($solicitacaoCadastro->pessoa_tipo){
             case 'aluno':
                 $pessoa = new Aluno([

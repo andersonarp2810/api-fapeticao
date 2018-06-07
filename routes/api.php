@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'AuthController@login')->middleware('cors');
 
+Route::post('solicitacao_cadastros.store', 'SolicitacaoCadastroController@store')->middleware('cors'); // qualquer um pode criar uma solicitação de cadastro
+
 Route::group([
 
     'middleware' => ['auth:api', 'cors']
@@ -52,6 +54,6 @@ Route::group([
     Route::delete('equipes/{equipe}/professores', 'EquipeController@detachProfessor');
     Route::post('equipes/{equipe}/alunos', 'EquipeController@addAluno');
     Route::delete('equipes/{equipe}/alunos', 'EquipeController@detachAluno');
-    Route::apiResource('solicitacao_cadastros', 'SolicitacaoCadastroController');
+    Route::apiResource('solicitacao_cadastros.store', 'SolicitacaoCadastroController')->except(['store']);
     Route::post('solicitacao_cadastros/{solicitacao_cadastro}', 'SolicitacaoCadastroController@aprovarCadastro');
 });
