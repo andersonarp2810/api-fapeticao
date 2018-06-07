@@ -19,7 +19,7 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        return new AdministradorsResource(Administrador::paginate(5));
+        return new AdministradorsResource(Administrador::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

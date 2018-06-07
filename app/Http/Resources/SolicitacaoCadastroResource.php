@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoteiroResource extends JsonResource
+class SolicitacaoCadastroResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,18 +15,17 @@ class RoteiroResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'roteiro',
+            'type' => 'solicitação de cadastro',
             'id' => (string)$this->id,
             'attributes' => [
-                'titulo' => $this->titulo,
-                'texto' => $this->texto
+                'login' => $this->login,
+                'nome' => $this->nome,
+                'tipo' => $this->pessoa_tipo,
+                'cadastro' => $this->cadastro
             ],
             'links' => [
-                'self' => route('roteiros.show', ['roteiro' => $this->id]),
-                'related' => [
-                    'professor' => route('professors.show', ['professor' => $this->professor->id])
-                ],
-            ],
+                'self' => route('solicitacao_cadastros.show', ['solicitacao_cadastro' => $this->id])
+            ]
         ];
     }
 }

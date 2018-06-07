@@ -19,7 +19,7 @@ class TipoDocumentoController extends Controller
     public function index()
     {
         $this->authorize('isProfessor', TipoDocumento::class);
-        return new TipoDocumentosResource(TipoDocumento::paginate(10));
+        return new TipoDocumentosResource(TipoDocumento::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

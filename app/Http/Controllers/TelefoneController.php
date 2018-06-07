@@ -20,7 +20,7 @@ class TelefoneController extends Controller
     {
         //
         $this->authorize('before', Telefone::class);
-        return new TelefonesResource(Telefone::paginate(10));
+        return new TelefonesResource(Telefone::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

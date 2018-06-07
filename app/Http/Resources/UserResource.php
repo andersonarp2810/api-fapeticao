@@ -19,15 +19,13 @@ class UserResource extends JsonResource
             'id' => (string)$this->id,
             'attributes' => [
                 'email' => $this->email,
+                'nome' => $this->pessoa->nome,
+                'tipo' => $this->pessoa_type
             ],
             'links' => [
                 'self' => route('users.show', ['user' => $this->id]),
                 'related' => [
-                    'pessoa' => [
-                        'type' => $this->pessoa_type,
-                        'link' => route(''.$this->pessoa_type.'s.show', [''.$this->pessoa_type => $this->pessoa_id])
-                    ],
-                    /* falta implementar as rotas disso
+                    'pessoa' => route(''.$this->pessoa_type.'s.show', [''.$this->pessoa_type => $this->pessoa_id]),
                     'emails' => $this->emails->map(function ($email){
                         return route('emails.show', ['email' => $email->id]);  
                     }),
@@ -37,7 +35,6 @@ class UserResource extends JsonResource
                     'telefones' => $this->telefones->map(function ($telefone){
                         return route('telefones.show', ['telefone' => $telefone->id]);
                     })
-                    */
                 ]
             ]
         ];

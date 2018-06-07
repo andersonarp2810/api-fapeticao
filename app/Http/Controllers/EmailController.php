@@ -19,7 +19,7 @@ class EmailController extends Controller
     public function index()
     {
         //
-        return new EmailsResource(Email::paginate(10));
+        return new EmailsResource(Email::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

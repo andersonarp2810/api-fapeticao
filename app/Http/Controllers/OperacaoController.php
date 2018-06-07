@@ -19,7 +19,7 @@ class OperacaoController extends Controller
     public function index()
     {
         //
-        return new OperacaosResource(Operacao::paginate(10));
+        return new OperacaosResource(Operacao::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

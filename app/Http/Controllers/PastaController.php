@@ -19,7 +19,7 @@ class PastaController extends Controller
     public function index()
     {
         //
-        return new PastasResource(Pasta::paginate(10));
+        return new PastasResource(Pasta::oderBy('id', 'asc')->paginate(10));
     }
 
     /**

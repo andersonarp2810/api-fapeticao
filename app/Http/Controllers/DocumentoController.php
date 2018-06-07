@@ -18,7 +18,7 @@ class DocumentoController extends Controller
      */
     public function index()
     {
-        return new DocumentosResource(Documento::paginate(10));
+        return new DocumentosResource(Documento::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

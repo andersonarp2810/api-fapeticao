@@ -12,11 +12,11 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "tymon/jwt-auth": "~1.0"
+        "tymon/jwt-auth": "~1.0",
+        "fzaninotto/faker": "^1.4"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
-        "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
@@ -50,9 +50,7 @@
         ],
         "post-install-cmd": [
             "php artisan clear-compiled",
-            "chmod -R 777 public/",
-            "composer install --dev",
-            "php artisan migrate:refresh --seed"
+            "chmod -R 777 public/"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

@@ -20,7 +20,7 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        return new EquipesResource(Equipe::paginate(10));
+        return new EquipesResource(Equipe::orderBy('id', 'asc')->paginate(10));
     }
 
     /**
@@ -84,7 +84,7 @@ class EquipeController extends Controller
     // adicionar professor em uma equipe
     public function addProfessor(Request $request, Equipe $equipe){
         $professor = Professor::find($request['id_professor']);
-        $equipe->professores->save($professor);
+        $equipe->professores()->save($professor);
 
         return response([
             'data' => new EquipeResource($equipe)
@@ -93,7 +93,7 @@ class EquipeController extends Controller
 
     // remove um professor da equipe sem deletar ninguém
     public function detachProfessor(Request $request, Equipe $equipe){
-        $equipe->professores->detach($request['id_professor']);
+        $equipe->professores()->detach($request['id_professor']);
         return response([
             'data' => new EquipeResource($equipe)
         ], 202);
@@ -102,7 +102,7 @@ class EquipeController extends Controller
     // adicionar aluno a equipe
     public function addAluno(Request $request, Equipe $equipe){
         $aluno = Aluno::find($request['id_aluno']);
-        $equipe->alunos->save($aluno);
+        $equipe->alunos()->save($aluno);
         return response([
             'data' => new EquipeResource($equipe)
         ], 201);
@@ -110,7 +110,7 @@ class EquipeController extends Controller
 
     // remover aluno de equipe sem deletar ninguém
     public function detachAluno(Request $request, Equipe $equipe){
-        $equipe->alunos->detach($request['id_aluno']);
+        $equipe->alunos()->detach($request['id_aluno']);
 
         return response([
             'data' => new EquipeResource($equipe)

@@ -19,7 +19,7 @@ class ComentarioController extends Controller
     public function index()
     {
         //
-        return new ComentariosResource(Comentario::paginate(10));
+        return new ComentariosResource(Comentario::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

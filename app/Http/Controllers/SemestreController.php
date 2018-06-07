@@ -19,7 +19,7 @@ class SemestreController extends Controller
      */
     public function index()
     {
-        return new SemestresResource(Semestre::paginate(5));
+        return new SemestresResource(Semestre::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

@@ -19,7 +19,7 @@ class EnderecoController extends Controller
     public function index()
     {
         //
-        return new EnderecosResource(Endereco::paginate(10));
+        return new EnderecosResource(Endereco::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

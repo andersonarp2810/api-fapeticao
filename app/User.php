@@ -61,14 +61,14 @@ class User extends Authenticatable implements JWTSubject
    }
 
    public function emails(){
-       return $this->morphMany('email', 'dono');
+       return $this->morphMany(Email::class, 'dono');
    }
 
    public function enderecos(){
-       return $this->morphMany('endereco', 'dono');
+       return $this->morphMany(Endereco::class, 'dono');
    }
 
    public function telefones(){
-       return $this->morphMany('telefone', 'dono');
+       return $this->morphMany(Telefone::class, 'dono');
    }
 }

@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         //
         $this->authorize('before', User::class);
-        return new UsersResource(User::paginate(10));
+        return new UsersResource(User::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoteirosTable extends Migration
+class CreateSolicitacaoCadastrosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateRoteirosTable extends Migration
      */
     public function up()
     {
-        Schema::create('roteiros', function (Blueprint $table) {
+        Schema::create('solicitacao_cadastros', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_professor')->default(null);
-            $table->string('titulo');
-            $table->text('texto');
+            $table->string('login');
+            $table->string('senha');
+            $table->string('nome');
+            $table->string('pessoa_tipo');
+            $table->string('cadastro');
+            
             $table->timestampsTz();
-
-            $table->foreign('id_professor')->references('id')->on('professors')->onDelete('cascade');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateRoteirosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roteiros');
+        Schema::dropIfExists('solicitacao_cadastros');
     }
 }

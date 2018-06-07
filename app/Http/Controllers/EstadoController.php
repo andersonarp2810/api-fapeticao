@@ -19,7 +19,7 @@ class EstadoController extends Controller
     public function index()
     {
         //
-        return new EstadosResource(Estado::paginate(10));
+        return new EstadosResource(Estado::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

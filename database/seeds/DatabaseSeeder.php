@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Administrador;
+use App\Aluno;
+use App\Documento;
+use App\ParteAtendida;
+use App\Peticao;
 use App\Professor;
 use App\Roteiro;
-use App\Administrador;
-use App\ParteAtendida;
 use App\Semestre;
 use App\TipoDocumento;
-use App\Documento;
 use App\TipoPeticao;
-use App\Peticao;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,12 +48,13 @@ class DatabaseSeeder extends Seeder
             "pessoa_type" => "defensor"
         ]);
 
-        factory(Professor::class, 30)->create();
-        factory(Roteiro::class, 10)->create();
-        factory(Administrador::class, 5)->create();
-        factory(ParteAtendida::class, 5)->create();
+        factory(Professor::class, 1)->create();
+        factory(Roteiro::class, 30)->create();
+        factory(Administrador::class, 1)->create();
+        factory(ParteAtendida::class, 20)->create();
         factory(Semestre::class, 5)->create();
         factory(TipoDocumento::class, 5)->create();
+        factory(Aluno::class, 3)->create();
         //factory(Documento::class, 5)->create();
         //factory(TipoPeticao::class, 5)->create();
         //factory(Peticao::class, 5)->create();

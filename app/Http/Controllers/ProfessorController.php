@@ -18,7 +18,7 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        return new ProfessorsResource(Professor::paginate(5));
+        return new ProfessorsResource(Professor::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

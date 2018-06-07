@@ -19,11 +19,19 @@ class EquipeResource extends JsonResource
             'id' => (string)$this->id,
             'attributes' => [
                 'related' => [
+                    'semestre' => $this->semestre->semestre,
+                    'area_de_atuacao' => $this->semestre->area_de_atuacao
                 ]
             ],
             'links' => [
                 'self' => route('equipes.show', ['equipe' => $this->id]),
                 'related' => [
+                    'professor' => $this->professores->map(function($professor){
+                        return route('professors.show', ['professor' => $this->id]);
+                    }),
+                    'aluno' => $this->alunos->map(function ($aluno){
+                        return route('alunos.show', ['aluno' => $aluno->id]);
+                    })
                 ]
             ]
         ];

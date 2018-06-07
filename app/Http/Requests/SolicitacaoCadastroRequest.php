@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RoteiroRequest extends FormRequest
+class SolicitacaoCadastroRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,12 @@ class RoteiroRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required',
-            'texto' => 'required',
-            'id_professor' => 'required|exists:professors,id'
+            //
+            'login' => 'required',
+            'senha' => 'required',
+            'nome' => 'required',
+            'pessoa_tipo' => ['required', Rule::in(['aluno', 'administrador', 'defensor', 'professor'])],
+            'cadastro' => 'required'
         ];
     }
 }
