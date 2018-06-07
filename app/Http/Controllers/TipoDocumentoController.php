@@ -18,6 +18,7 @@ class TipoDocumentoController extends Controller
      */
     public function index()
     {
+        $this->authorize('isProfessor', TipoDocumento::class);
         return new TipoDocumentosResource(TipoDocumento::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -29,6 +30,7 @@ class TipoDocumentoController extends Controller
      */
     public function store(TipoDocumentoRequest $request)
     {
+        $this->authorize('isProfessor', TipoDocumento::class);
         $tipo = new TipoDocumento($request->all());
 
         $tipo->save();
@@ -46,6 +48,7 @@ class TipoDocumentoController extends Controller
      */
     public function show(TipoDocumento $tipoDocumento)
     {
+        $this->authorize('isProfessor', TipoDocumento::class);
         TipoDocumentoResource::withoutWrapping();
         return new TipoDocumentoResource($tipoDocumento);
     }
@@ -59,6 +62,7 @@ class TipoDocumentoController extends Controller
      */
     public function update(Request $request, TipoDocumento $tipoDocumento)
     {
+        $this->authorize('isProfessor', TipoDocumento::class);
         $tipoDocumento->update($request->all());
 
         return response ([
@@ -74,6 +78,7 @@ class TipoDocumentoController extends Controller
      */
     public function destroy(TipoDocumento $tipoDocumento)
     {
+        $this->authorize('isProfessor', TipoDocumento::class);
         $tipoDocumento->delete();
 
         return response (null, 204);
