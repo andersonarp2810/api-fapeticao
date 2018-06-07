@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Administrador;
 use App\Aluno;
 use App\Documento;
+use App\Estado;
 use App\ParteAtendida;
 use App\Peticao;
 use App\Professor;
@@ -46,6 +47,35 @@ class DatabaseSeeder extends Seeder
             "password" => bcrypt('123456'),
             "pessoa_id" => 1,
             "pessoa_type" => "defensor"
+        ]);
+
+        Estado::create([
+            "nome" => "Petição iniciada.",
+            "descricao" => "O professor autoriza a abertura da pasta para dar início a elaboração da petição."
+        ]);
+        Estado::create([
+            "nome" => "Em elaboração.",
+            "descricao" => "Após a aprovação da abertura de pasta da petição, os alunos devem escrevê-la conforme o modelo indicado pelo orientador."
+        ]);
+        Estado::create([
+            "nome" => "Enviado para revisão.",
+            "descricao" => "Ao realizar a elaboração da petição, os alunos enviam para o professor orientador revisar."
+        ]);
+        Estado::create([
+            "nome" => "Em revisão pelo orientador.",
+            "descricao" => "O orientador revisa a petição dos alunos, acrescentando comentários sobre possíveis erros no texto ou nos documentos anexados."
+        ]);
+        Estado::create([
+            "nome" => "Devolvido para correção.",
+            "descricao" => "Foram encontrados erros na petição pelo orientador, que após adicionar comentários sobre o que deve ser corrigido, devolve para reelaboração."
+        ]);
+        Estado::create([
+            "nome" => "Em revisão pelo defensor.",
+            "descricao" => "O defensor revisa a petição, acrescentando comentários sobre possíveis erros no texto ou nos documentos anexados."
+        ]);
+        Estado::create([
+            "nome" => "Pronto para envio.",
+            "descricao" => "Petição aprovada pelo defensor e pronta para o envio para o PJE."
         ]);
 
         factory(Professor::class, 1)->create();
