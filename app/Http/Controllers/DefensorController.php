@@ -19,7 +19,7 @@ class DefensorController extends Controller
     public function index()
     {
         //
-        return new DefensorsResource(Defensor::paginate(10));
+        return new DefensorsResource(Defensor::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

@@ -18,7 +18,7 @@ class TipoPeticaoController extends Controller
      */
     public function index()
     {
-        return new TipoPeticaosResource(TipoPeticao::paginate(10));
+        return new TipoPeticaosResource(TipoPeticao::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

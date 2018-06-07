@@ -19,7 +19,7 @@ class TipoOperacaoController extends Controller
     public function index()
     {
         //
-        return new TipoOperacaosResource(TipoOperacao::paginate(10));
+        return new TipoOperacaosResource(TipoOperacao::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

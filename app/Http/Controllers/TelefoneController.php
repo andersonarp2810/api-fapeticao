@@ -19,7 +19,7 @@ class TelefoneController extends Controller
     public function index()
     {
         //
-        return new TelefonesResource(Telefone::paginate(10));
+        return new TelefonesResource(Telefone::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

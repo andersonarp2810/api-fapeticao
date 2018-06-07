@@ -25,7 +25,7 @@ class SolicitacaoCadastroController extends Controller
     public function index()
     {
         //
-        return new SolicitacaoCadastrosResource(SolicitacaoCadastro::paginate(10));
+        return new SolicitacaoCadastrosResource(SolicitacaoCadastro::orderBy('id', 'asc')->paginate(10));
     }
 
 

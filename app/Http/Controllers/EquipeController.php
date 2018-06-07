@@ -20,7 +20,7 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        return new EquipesResource(Equipe::paginate(10));
+        return new EquipesResource(Equipe::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

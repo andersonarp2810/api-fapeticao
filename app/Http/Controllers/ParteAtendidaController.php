@@ -18,7 +18,7 @@ class ParteAtendidaController extends Controller
      */
     public function index()
     {
-        return new ParteAtendidasResource(ParteAtendida::paginate(10));
+        return new ParteAtendidasResource(ParteAtendida::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

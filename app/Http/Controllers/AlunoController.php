@@ -19,7 +19,7 @@ class AlunoController extends Controller
     public function index()
     {
         //
-        return new AlunosResource(Aluno::paginate(10));
+        return new AlunosResource(Aluno::orderBy('id', 'asc')->paginate(10));
     }
 
     /**

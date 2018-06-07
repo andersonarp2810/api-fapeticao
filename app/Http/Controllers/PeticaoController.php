@@ -18,7 +18,7 @@ class PeticaoController extends Controller
      */
     public function index()
     {
-        return new PeticaosResource(Peticao::paginate(10));
+        return new PeticaosResource(Peticao::orderBy('id', 'asc')->paginate(10));
     }
 
     /**
