@@ -92,15 +92,9 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        auth()->setTTL(auth()->factory()->getTTL()); // renova de acordo com
-        return response([
-            'expira_em' => auth()->factory()->getTTL() #tempo em minutos
-        ], 200);
-        /*
         return $this->respondWithToken(
             auth()->refresh() #retorna um novo token e invalida o antecessor
         );
-        */
     }
 
     /**
