@@ -39,7 +39,7 @@ class AuthController extends Controller
         return response([
             'token' => $token,
             'usuário' => new UserResource(auth()->user())
-        ], 200);
+        ], 200, ['Teste' => 'pega fi duma egua']);
     }
 
     /**
