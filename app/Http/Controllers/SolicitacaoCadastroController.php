@@ -45,6 +45,28 @@ class SolicitacaoCadastroController extends Controller
 
         $solicitacaoCadastro->save();
 
+        if($solicitacaoCadastro->pessoa_tipo == 'aluno'){ // aluno se cadastra direto porque não tem acesso privilegiado
+            $aluno = new Aluno([
+                'nome' => $solicitacaoCadastro->nome,
+                'matricula' => $solicitacaoCadastro->cadastro,
+            ]);
+    
+            $user = new User([
+                'email' => $solicitacaoCadastro->login,
+                'password' => $solicitacaoCadastro->senha,
+                'pessoa_id' => $pessoa->id,
+                'pessoa_type' => $solicitacaoCadastro->pessoa_tipo
+            ]);
+            $user->save();
+            $solicitacaoCadastro->delete();
+
+            return response([
+                'data' => new UserResource($user)
+            ], 201);
+
+        }
+
+        // outras pessoas tem acesso privilegiado e precisam ser aprovadas pela administração
         return response([
             'data' => new SolicitacaoCadastroResource($solicitacaoCadastro)
         ], 201);
@@ -109,12 +131,6 @@ class SolicitacaoCadastroController extends Controller
         $this->authorize('isAdmin', SolicitacaoCadastro::class);
 
         switch($solicitacaoCadastro->pessoa_tipo){
-            case 'aluno':
-                $pessoa = new Aluno([
-                    'nome' => $solicitacaoCadastro->nome,
-                    'matricula' => $solicitacaoCadastro->cadastro,
-                ]);
-                break;
             case 'administrador':
                 $pessoa = new Administrador([
                     'nome' => $solicitacaoCadastro->nome,

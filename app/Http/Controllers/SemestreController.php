@@ -63,7 +63,7 @@ class SemestreController extends Controller
      */
     public function update(Request $request, Semestre $semestre)
     {
-        $this->authorize('update', Semestre::class);
+        $this->authorize('update', $semestre);
         $semestre->update($request->all());
 
         return response([
@@ -79,7 +79,7 @@ class SemestreController extends Controller
      */
     public function destroy(Semestre $semestre)
     {
-        $this->authorize('delete', Semestre::class);
+        $this->authorize('delete', $semestre);
         $semestre->delete();
 
         return response(null, 204);
