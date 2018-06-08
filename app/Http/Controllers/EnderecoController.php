@@ -19,6 +19,7 @@ class EnderecoController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Endereco::class);
         return new EnderecosResource(Endereco::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class EnderecoController extends Controller
     public function store(EnderecoRequest $request)
     {
         //
+        $this->authorize('create', Endereco::class);
         $endereco = new Endereco($request->all());
         $endereco->save();
         return response([
@@ -47,6 +49,7 @@ class EnderecoController extends Controller
     public function show(Endereco $endereco)
     {
         //
+        $this->authorize('view', Endereco::class);
         EnderecoResource::withoutWrapping();
         return new EnderecoResouce($endereco);
     }
@@ -61,6 +64,7 @@ class EnderecoController extends Controller
     public function update(Request $request, Endereco $endereco)
     {
         //
+        $this->authorize('update', Endereco::class);
         $endereco->update($request->all());
 
         return response([
@@ -77,6 +81,7 @@ class EnderecoController extends Controller
     public function destroy(Endereco $endereco)
     {
         //
+        $this->authorize('delete', Endereco::class);
         $endereco->delete();
         return response(null, 204);
     }

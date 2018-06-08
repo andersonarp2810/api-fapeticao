@@ -19,6 +19,7 @@ class EmailController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Email::class);
         return new EmailsResource(Email::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class EmailController extends Controller
     public function store(EmailRequest $request)
     {
         //
+        $this->authorize('create', Email::class);
         $email = new Email($request->all());
 
         $email->save();
@@ -49,6 +51,7 @@ class EmailController extends Controller
     public function show(Email $email)
     {
         //
+        $this->authorize('view', Email::class);
         EmailResource::withoutWrapping();
 
         return new EmailResource($email);
@@ -64,6 +67,7 @@ class EmailController extends Controller
     public function update(Request $request, Email $email)
     {
         //
+        $this->authorize('update', Email::class);
         $email->update($request->all());
 
         return response([
@@ -80,6 +84,7 @@ class EmailController extends Controller
     public function destroy(Email $email)
     {
         //
+        $this->authorize('delete', Email::class);
         $email->delete();
         return response(null, 204);
     }

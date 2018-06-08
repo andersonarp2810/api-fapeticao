@@ -19,6 +19,7 @@ class ComentarioController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Comentario::class);
         return new ComentariosResource(Comentario::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class ComentarioController extends Controller
     public function store(ComentarioRequest $request)
     {
         //
+        $this->authorize('create', Comentario::class);
         $comentario = new Comentario($request->all());
 
         $comentario->save();
@@ -50,6 +52,7 @@ class ComentarioController extends Controller
     public function show(Comentario $comentario)
     {
         //
+        $this->authorize('view', Comentario::class);
         ComentarioResource::withoutWrapping();
         return new ComentarioResource($comentario);
     }
@@ -64,6 +67,7 @@ class ComentarioController extends Controller
     public function update(Request $request, Comentario $comentario)
     {
         //
+        $this->authorize('update', Comentario::class);
         $comentario->update($request->all());
 
         return response([
@@ -80,6 +84,7 @@ class ComentarioController extends Controller
     public function destroy(Comentario $comentario)
     {
         //
+        $this->authorize('delete', Comentario::class);
         $comentario->delete();
 
         return response(null, 204);

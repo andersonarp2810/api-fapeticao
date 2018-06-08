@@ -18,6 +18,7 @@ class ProfessorController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Professor::class);
         return new ProfessorsResource(Professor::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -29,6 +30,7 @@ class ProfessorController extends Controller
      */
     public function store(ProfessorRequest $request)
     {
+        $this->authorize('create', Professor:: class);
         $professor = new Professor($request->all());
 
         $professor->save();
@@ -46,6 +48,7 @@ class ProfessorController extends Controller
      */
     public function show(Professor $professor)
     {
+        $this->authorize('view', Professor::class);
         ProfessorResource::withoutWrapping();
         
         return new ProfessorResource($professor);
@@ -60,6 +63,7 @@ class ProfessorController extends Controller
      */
     public function update(Request $request, Professor $professor)
     {
+        $this->authorize('update', $professor, $request);
         $professor->update($request->all());
 
         return response([
@@ -75,6 +79,7 @@ class ProfessorController extends Controller
      */
     public function destroy(Professor $professor)
     {
+        $this->authorize('delete', Professor::class);
         $professor->delete();
 
         return response(null, 204);

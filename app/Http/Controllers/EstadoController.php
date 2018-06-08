@@ -19,6 +19,7 @@ class EstadoController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Estado::class);
         return new EstadosResource(Estado::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class EstadoController extends Controller
     public function store(EstadoRequest $request)
     {
         //
+        $this->authorize('create', Estado::class);
         $estado = new Estado($request->all());
         $estado->save();
 
@@ -48,6 +50,7 @@ class EstadoController extends Controller
     public function show(Estado $estado)
     {
         //
+        $this->authorize('view', Estado::class);
         EstadoResource::withoutWrapping();
 
         return new EstadoResource($estado);
@@ -63,6 +66,7 @@ class EstadoController extends Controller
     public function update(Request $request, Estado $estado)
     {
         //
+        $this->authorize('update', Estado::class);
         $estado->update($request->all());
 
         return response([
@@ -79,6 +83,7 @@ class EstadoController extends Controller
     public function destroy(Estado $estado)
     {
         //
+        $this->authorize('delete', Estado::class);
         $estado->delete();
 
         return response(null, 204);

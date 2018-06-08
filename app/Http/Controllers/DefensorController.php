@@ -19,6 +19,7 @@ class DefensorController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Defensor::class);
         return new DefensorsResource(Defensor::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class DefensorController extends Controller
     public function store(DefensorRequest $request)
     {
         //
+        $this->authorize('create', Defensor::class);
         $defensor = new Defensor($request->all());
 
         $defensor->save();
@@ -49,6 +51,7 @@ class DefensorController extends Controller
     public function show(Defensor $defensor)
     {
         //
+        $this->authorize('view', Defensor::class);
         DefensorResource::withoutWrapping();
         return new DefensorResource($defensor);
     }
@@ -63,6 +66,7 @@ class DefensorController extends Controller
     public function update(Request $request, Defensor $defensor)
     {
         //
+        $this->authorize('update', $defensor, $request);
         $defensor->update($request->all());
 
         return response([
@@ -79,6 +83,7 @@ class DefensorController extends Controller
     public function destroy(Defensor $defensor)
     {
         //
+        $this->authorize('delete', Defensor::class);
         $defensor->delete();
 
         return response(null, 204);

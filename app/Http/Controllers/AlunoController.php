@@ -19,6 +19,7 @@ class AlunoController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Aluno::class);
         return new AlunosResource(Aluno::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class AlunoController extends Controller
     public function store(AlunoRequest $request)
     {
         //
+        $this->authorize('create', Aluno::class);
         $aluno = new Aluno($request->all());
 
         $aluno->save();
@@ -49,6 +51,7 @@ class AlunoController extends Controller
     public function show(Aluno $aluno)
     {
         //
+        $this->authorize('view', Aluno::class);
         AlunoResource::withoutWrapping();
 
         return new AlunoResource($aluno);
@@ -64,6 +67,7 @@ class AlunoController extends Controller
     public function update(Request $request, Aluno $aluno)
     {
         //
+        $this->authorize('update', $aluno, $request);
         $aluno->update($request->all());
 
         return response([
@@ -80,6 +84,7 @@ class AlunoController extends Controller
     public function destroy(Aluno $aluno)
     {
         //
+        $this->authorize('delete', Aluno::class);
         $aluno->delete();
 
         return response(null, 204);

@@ -11,7 +11,7 @@ class TipoOperacaoPolicy
     use HandlesAuthorization;
 
     public function isAdmin(User $user){
-        return $user->type == 'administrador';
+        return $user->pessoa_type == 'administrador';
     }
     
 }

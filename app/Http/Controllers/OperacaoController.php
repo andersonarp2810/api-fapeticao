@@ -19,6 +19,7 @@ class OperacaoController extends Controller
     public function index()
     {
         //
+        $this->authorize('isAdmin', Operacao::class);
         return new OperacaosResource(Operacao::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -31,6 +32,7 @@ class OperacaoController extends Controller
     public function store(OperacaoRequest $request)
     {
         //
+        $this->authorize('isAdmin', Operacao::class);
         $operacao = new Operacao($request->all());
 
         $operacao->save();
@@ -49,6 +51,7 @@ class OperacaoController extends Controller
     public function show(Operacao $operacao)
     {
         //
+        $this->authorize('isAdmin', Operacao::class);
         OperacaoResource::withoutWrapping();
 
         return new OperacaoResource($operacao);
@@ -64,6 +67,7 @@ class OperacaoController extends Controller
     public function update(Request $request, Operacao $operacao)
     {
         //
+        $this->authorize('isAdmin', Operacao::class);
         $operacao->update($request->all());
 
         return response([
@@ -80,6 +84,7 @@ class OperacaoController extends Controller
     public function destroy(Operacao $operacao)
     {
         //
+        $this->authorize('isAdmin', Operacao::class);
         $operacao->delete();
 
         return response(null, 204);

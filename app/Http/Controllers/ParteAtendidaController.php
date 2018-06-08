@@ -18,6 +18,7 @@ class ParteAtendidaController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', ParteAtendida::class);
         return new ParteAtendidasResource(ParteAtendida::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -29,6 +30,7 @@ class ParteAtendidaController extends Controller
      */
     public function store(ParteAtendidaRequest $request)
     {
+        $this->authorize('create', ParteAtendida::class);
         $parteAtendida = new ParteAtendida($request->all());
 
         $parteAtendida->save();
@@ -46,6 +48,7 @@ class ParteAtendidaController extends Controller
      */
     public function show(ParteAtendida $parteAtendida)
     {
+        $this->authorize('view', ParteAtendida::class);
         ParteAtendidaResource::withoutWrapping();
         return new ParteAtendidaResource($parteAtendida);
     }
@@ -59,6 +62,7 @@ class ParteAtendidaController extends Controller
      */
     public function update(Request $request, ParteAtendida $parteAtendida)
     {
+        $this->authorize('update', ParteAtendida::class);
         $parteAtendida->update($request->all());
 
         return response([
@@ -74,6 +78,7 @@ class ParteAtendidaController extends Controller
      */
     public function destroy(ParteAtendida $parteAtendida)
     {
+        $this->authorize('delete', ParteAtendida::class);
         $parteAtendida->delete();
 
         return response(null, 204);

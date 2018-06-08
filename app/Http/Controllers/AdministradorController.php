@@ -19,6 +19,7 @@ class AdministradorController extends Controller
      */
     public function index()
     {
+        $this->authorize('isAdmin', Administrador::class);
         return new AdministradorsResource(Administrador::orderBy('id', 'asc')->paginate(10));
     }
 
@@ -30,6 +31,7 @@ class AdministradorController extends Controller
      */
     public function store(AdministradorRequest $request)
     {
+        $this->authorize('isAdmin', Administrador::class);
         $administrador = new Administrador($request->all());
 
         $administrador->save();
@@ -47,6 +49,7 @@ class AdministradorController extends Controller
      */
     public function show(Administrador $administrador)
     {   
+        $this->authorize('isAdmin', Administrador::class);
         AdministradorResource::withoutWrapping();
         return new AdministradorResource($administrador);
     }
@@ -60,6 +63,7 @@ class AdministradorController extends Controller
      */
     public function update(Request $request, Administrador $administrador)
     {
+        $this->authorize('isAdmin', Administrador::class);
         $administrador->update($request->all());
 
         return response([
@@ -75,6 +79,7 @@ class AdministradorController extends Controller
      */
     public function destroy(Administrador $administrador)
     {
+        $this->authorize('isAdmin', Administrador::class);
         $administrador->delete();
 
         return response(null, 204);
