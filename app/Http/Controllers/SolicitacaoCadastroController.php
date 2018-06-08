@@ -50,11 +50,12 @@ class SolicitacaoCadastroController extends Controller
                 'nome' => $solicitacaoCadastro->nome,
                 'matricula' => $solicitacaoCadastro->cadastro,
             ]);
-    
+            $aluno->save();
+            
             $user = new User([
                 'email' => $solicitacaoCadastro->login,
                 'password' => $solicitacaoCadastro->senha,
-                'pessoa_id' => $pessoa->id,
+                'pessoa_id' => $aluno->id,
                 'pessoa_type' => $solicitacaoCadastro->pessoa_tipo
             ]);
             $user->save();
