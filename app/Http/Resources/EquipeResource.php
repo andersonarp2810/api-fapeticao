@@ -19,8 +19,10 @@ class EquipeResource extends JsonResource
             'id' => (string)$this->id,
             'attributes' => [
                 'related' => [
-                    'semestre' => $this->semestre->semestre,
-                    'area_de_atuacao' => $this->semestre->area_de_atuacao
+                    'semestre' => [
+                        'semestre' => $this->semestre->semestre,
+                        'area_de_atuacao' => $this->semestre->area_de_atuacao
+                    ],
                 ]
             ],
             'links' => [
