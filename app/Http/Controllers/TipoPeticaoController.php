@@ -18,7 +18,8 @@ class TipoPeticaoController extends Controller
      */
     public function index()
     {
-        return new TipoPeticaosResource(TipoPeticao::paginate(10));
+        $this->authorize('isProfessor', TipoPeticao::class);
+        return new TipoPeticaosResource(TipoPeticao::orderBy('id', 'asc')->paginate(10));
     }
 
     /**
@@ -29,6 +30,7 @@ class TipoPeticaoController extends Controller
      */
     public function store(TipoPeticaoRequest $request)
     {
+        $this->authorize('isProfessor', TipoPeticao::class);
         $tipo = new TipoPeticao($request->all());
 
         $tipo->save();
@@ -46,6 +48,7 @@ class TipoPeticaoController extends Controller
      */
     public function show(TipoPeticao $tipoPeticao)
     {
+        $this->authorize('isProfessor', $tipoPeticao);
         TipoPeticaoResource::withoutWrapping();
         return new TipoPeticaoResource($tipoPeticao);
     }
@@ -59,6 +62,7 @@ class TipoPeticaoController extends Controller
      */
     public function update(Request $request, TipoPeticao $tipoPeticao)
     {
+        $this->authorize('isProfessor', $tipoPeticao);
         $tipoPeticao->update($request->all());
 
         return response ([
@@ -74,6 +78,7 @@ class TipoPeticaoController extends Controller
      */
     public function destroy(TipoPeticao $tipoPeticao)
     {
+        $this->authorize('isProfessor', $tipoPeticao);
         $tipoPeticao->delete();
 
         return response(null, 204);

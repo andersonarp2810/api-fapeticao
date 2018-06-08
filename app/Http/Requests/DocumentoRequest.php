@@ -26,6 +26,7 @@ class DocumentoRequest extends FormRequest
         return [
             'nome' => 'required',
             'caminho' => 'required',
+            'id_pasta' => 'required',
             'id_tipo_documento' => 'required'
         ];
     }

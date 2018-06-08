@@ -22,7 +22,8 @@ class RoteiroController extends Controller
     public function index()
     {
         //
-        return new RoteirosResource(Roteiro::paginate(10));
+        $this->authorize('view', Roteiro::class);
+        return new RoteirosResource(Roteiro::orderBy('id', 'asc')->paginate(10));
     }
 
     /**
@@ -33,6 +34,7 @@ class RoteiroController extends Controller
      */
     public function store(RoteiroRequest $request)
     {
+        $this->authorize('create', Roteiro::class);
         $roteiro = new Roteiro($request->all());
 
         $roteiro->save();
@@ -51,6 +53,7 @@ class RoteiroController extends Controller
     public function show(Roteiro $roteiro)
     {
         //
+        $this->authorize('view', Roteiro::class);
         RoteiroResource::withoutWrapping();
         return new RoteiroResource($roteiro);
     }
@@ -64,6 +67,7 @@ class RoteiroController extends Controller
      */
     public function update(Request $request, Roteiro $roteiro)
     {
+        $this->authorize('update', $roteiro);
         $roteiro->update($request->all());
 
         return response([
@@ -79,6 +83,7 @@ class RoteiroController extends Controller
      */
     public function destroy(Roteiro $roteiro)
     {
+        $this->authorize('delete', $roteiro);
         $roteiro->delete();
 
         return response(null, HTTPResponse::HTTP_NO_CONTENT);

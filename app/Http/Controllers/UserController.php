@@ -19,7 +19,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        return new UsersResource(User::paginate(10));
+        $this->authorize('before', User::class);
+        return new UsersResource(User::orderBy('id', 'asc')->paginate(10));
     }
 
     /**
@@ -31,6 +32,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         //
+        $this->authorize('create', User::class);
         $user = new User($request->all());
 
         $user->save();
@@ -49,6 +51,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+        $this->authorize('view', $user);
         UserResource::withoutWrapping();
         return new UserResource($user);
     }
@@ -63,6 +66,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $this->authorize('update', $user);
         $user->update($request->all());
         
         return response([
@@ -79,6 +83,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $this->authorize('delete', $user);
         $user->delete();
 
         return response(null, 204);

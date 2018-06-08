@@ -25,7 +25,8 @@ class SolicitacaoCadastroController extends Controller
     public function index()
     {
         //
-        return new SolicitacaoCadastrosResource(SolicitacaoCadastro::paginate(10));
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
+        return new SolicitacaoCadastrosResource(SolicitacaoCadastro::orderBy('id', 'asc')->paginate(10));
     }
 
 
@@ -37,13 +38,35 @@ class SolicitacaoCadastroController extends Controller
      */
     public function store(SolicitacaoCadastroRequest $request)
     {
-        //
+        // qualquer um pode fazer sem nem logar
         $solicitacaoCadastro = new SolicitacaoCadastro($request->all());
 
         $solicitacaoCadastro->senha = bcrypt($solicitacaoCadastro->senha);
 
         $solicitacaoCadastro->save();
 
+        if($solicitacaoCadastro->pessoa_tipo == 'aluno'){ // aluno se cadastra direto porque não tem acesso privilegiado
+            $aluno = new Aluno([
+                'nome' => $solicitacaoCadastro->nome,
+                'matricula' => $solicitacaoCadastro->cadastro,
+            ]);
+    
+            $user = new User([
+                'email' => $solicitacaoCadastro->login,
+                'password' => $solicitacaoCadastro->senha,
+                'pessoa_id' => $pessoa->id,
+                'pessoa_type' => $solicitacaoCadastro->pessoa_tipo
+            ]);
+            $user->save();
+            $solicitacaoCadastro->delete();
+
+            return response([
+                'data' => new UserResource($user)
+            ], 201);
+
+        }
+
+        // outras pessoas tem acesso privilegiado e precisam ser aprovadas pela administração
         return response([
             'data' => new SolicitacaoCadastroResource($solicitacaoCadastro)
         ], 201);
@@ -58,6 +81,7 @@ class SolicitacaoCadastroController extends Controller
     public function show(SolicitacaoCadastro $solicitacaoCadastro)
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         SolicitacaoCadastroResource::withoutWrapping();
 
         return new SolicitacaoCadastroResource($solicitacaoCadastro);
@@ -73,6 +97,7 @@ class SolicitacaoCadastroController extends Controller
     public function update(Request $request, SolicitacaoCadastro $solicitacaoCadastro)
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         $solicitacaoCadastro->update($request->all());
 
         return response([
@@ -89,6 +114,7 @@ class SolicitacaoCadastroController extends Controller
     public function destroy(SolicitacaoCadastro $solicitacaoCadastro)
     {
         //
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
         $solicitacaoCadastro->delete();
 
         return response(null, 204);
@@ -101,13 +127,10 @@ class SolicitacaoCadastroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function aprovarCadastro(SolicitacaoCadastro $solicitacaoCadastro){
+        
+        $this->authorize('isAdmin', SolicitacaoCadastro::class);
+
         switch($solicitacaoCadastro->pessoa_tipo){
-            case 'aluno':
-                $pessoa = new Aluno([
-                    'nome' => $solicitacaoCadastro->nome,
-                    'matricula' => $solicitacaoCadastro->cadastro,
-                ]);
-                break;
             case 'administrador':
                 $pessoa = new Administrador([
                     'nome' => $solicitacaoCadastro->nome,

@@ -46,9 +46,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate",
-            "@composer install --dev",
-            "@composer update"
+            "@php artisan key:generate"
         ],
         "post-install-cmd": [
             "php artisan clear-compiled",

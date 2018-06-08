@@ -19,7 +19,8 @@ class SemestreController extends Controller
      */
     public function index()
     {
-        return new SemestresResource(Semestre::paginate(5));
+        $this->authorize('view', Semestre::class);
+        return new SemestresResource(Semestre::orderBy('id', 'asc')->paginate(10));
     }
 
     /**
@@ -30,6 +31,7 @@ class SemestreController extends Controller
      */
     public function store(SemestreRequest $request)
     {
+        $this->authorize('create', Semestre::class);
         $semestre = new Semestre($request->all());
 
         $semestre->save();
@@ -47,6 +49,7 @@ class SemestreController extends Controller
      */
     public function show(Semestre $semestre)
     {
+        $this->authorize('view', Semestre::class);
         SemestreResource::withoutWrapping();
         return new SemestreResource($semestre);
     }
@@ -60,6 +63,7 @@ class SemestreController extends Controller
      */
     public function update(Request $request, Semestre $semestre)
     {
+        $this->authorize('update', $semestre);
         $semestre->update($request->all());
 
         return response([
@@ -75,6 +79,7 @@ class SemestreController extends Controller
      */
     public function destroy(Semestre $semestre)
     {
+        $this->authorize('delete', $semestre);
         $semestre->delete();
 
         return response(null, 204);
